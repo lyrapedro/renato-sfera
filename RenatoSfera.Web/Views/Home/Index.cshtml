@@ -1,0 +1,142 @@
+﻿@model List<RenatoSfera.DOM.Show>
+@{
+    ViewBag.Title = "Renato Sfera";
+}
+
+<body class="header-collapse">
+
+    <div id="site-content">
+        <header class="site-header">
+            <div class="container">
+                <a href="@Url.Action("Index", "Home")" id="branding">
+                    <img src="~/Content/dummy/logo.png" alt="Site Title">
+                </a>
+                <nav class="main-navigation">
+                    <button type="button" class="toggle-menu"><i class="fa fa-bars"></i></button>
+                    <ul class="menu">
+                        <li class="menu-item current-menu-item"><a href="#home">Home</a></li>
+                        <li class="menu-item"><a href="#sobre">Sobre mim</a></li>
+                        <li class="menu-item"><a href="#agenda">Agenda</a></li>
+                        <li class="menu-item"><a href="#discografia">Discografia</a></li>
+                        <li class="menu-item"><a href="#contato">Contato</a></li>
+                    </ul>
+                </nav>
+                <div class="mobile-menu"></div>
+            </div>
+        </header>
+
+        <div class="hero" id="home">
+            <div class="slider">
+                <ul class="slides">
+                    <li class="lazy-bg" data-background="~/Content/dummy/header-bg.jpg">
+                        <div class="container">
+                            <h2 class="slide-title">Renato Sfera</h2>
+                            <h3 class="slide-subtitle">Cantor e compositor</h3>
+
+                            <a href="#discografia" class="button cut-corner">Ver músicas</a>
+                        </div>
+                    </li>
+                    <li class="lazy-bg" data-background="~/Content/dummy/header-bg2.jpeg">
+                        <div class="container">
+                            <h2 class="slide-title">Renato Sfera</h2>
+                            <h3 class="slide-subtitle">Cantor e compositor</h3>
+
+                            <a href="#discografia" class="button cut-corner">Ver músicas</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <main id="sobre">
+            <div class="container-fluid">
+                <div class="container">
+                    <div class="row">
+                        <img class="img-fluid" src="~/Content/dummy/man.png" alt="">
+                        <div class="col-sm font-bio">
+                            <p>Com seu novo show acústico, Renato Sfera conta com excelentes músicos permitindo um repertório bastante abrangente, passeando por diversos ritmos nacionais e internacionais. Já abriu shows da banda O Rappa, Jota Quest (Inauguração do Mineirão) e tocou em vários festivais, casamentos e eventos corporativos. Já realizou shows inclusive no exterior (Flórida – USA), onde tocou em casas de shows na cidade de Destin, onde residiu por 3 anos.</p>
+                            <p>Seu projeto acústico vem agitando as casas de shows, bares e festas em BH e todo o interior de Minas Gerais. Com um banho de Rock, Pop, Reggae e versões de músicas consagradas, sua música atende aos mais diversos gostos musicais.</p>
+                            <p>Com seu trabalho autoral, vem conquistando também espaço nas rádios Mineiras e nas redes sociais. Atualmente está lançando seu novo single: “Acalme a Alma”, que já disponível em todas as plataformas digitais e recentemente entrou na programação de várias rádios.</p>
+                            <iframe src="https://open.spotify.com/follow/1/?uri=spotify:artist:4Fs8SoZRcegk64PAY2IQNe?si=V9laYPPlSNq6NNI7YTrhew&size=detail&theme=light" width="300" height="56" scrolling="no" frameborder="0" style="border:none; overflow:hidden;" allowtransparency="true"></iframe>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="fullwidth-block upcoming-event-section" id="agenda" data-bg-color="#191919">
+                <div class="container">
+                    <header class="section-header">
+                        <h2 class="section-title">Agenda de Shows</h2>
+
+                        <div class="event-nav">
+                            <a class="prev" id="event-prev" href="#"><i class="fa fa-caret-left"></i></a>
+                            <a class="next" id="event-next" href="#"><i class="fa fa-caret-right"></i></a>
+                        </div>
+
+                    </header>
+                    <div class="event-carousel">
+                        @foreach (var show in Model)
+                        {
+                            <div class="event">
+                                <div class="entry-date" style="cursor:pointer;" onclick="AbrirModalShow(this);">
+                                    <div class="date">@show.horario.Day</div>
+                                    <span class="month">@show.horario.Month</span>
+                                </div>
+                                <h2 class="entry-title">@show.cidade</h2>
+                                <p>@show.local às @show.horario.ToShortTimeString()</p>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="fullwidth-block why-chooseus-section" id="discografia">
+                <div class="container">
+                    <h2 class="section-title">Discografia</h2>
+
+                    <div class="row justify-content-center">
+                        <div class="col-md-4">
+                            <div class="feature">
+                                <figure class="cut-corner">
+                                    <img src="~/Content/dummy/medium-image-1.jpg" alt="">
+                                </figure>
+                                <h3 class="feature-title">Acalme a Alma</h3>
+                                <p>Novo albúm lançado em Julho de 2019</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <iframe src="https://open.spotify.com/embed/artist/4Fs8SoZRcegk64PAY2IQNe" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer class="site-footer" id="contato">
+            <div class="container">
+                <img src="~/Content/dummy/logo-footer.png" alt="Site Name">
+
+
+                <form method="POST" id='form' action="." class="newsletter-form">
+                    @*{% csrf_token %} {{ form }}*@
+                    <input type="submit" class="button cut-corner" value="Enviar">
+                </form>
+                <!-- .newsletter-form -->
+
+                <div class="social-links">
+                    <a href="https://www.facebook.com/renatosfera/"><i class="fa fa-facebook-square"></i></a>
+                    <a href="https://open.spotify.com/artist/4Fs8SoZRcegk64PAY2IQNe"><i class="fa fa-music"></i></a>
+                    <a href="mailto:renatobrasil@gmail.com"><i class="fa fa-envelope"></i></a>
+                    <a href="https://www.instagram.com/renatosferaoficial/"><i class="fa fa-instagram"></i></a>
+                </div>
+
+                <p class="copy">Copyright 2019 Renato Sfera. Website criado por <a href="https://www.linkedin.com/in/pedro-lyra-44867914a/">Pedro Lyra</a>.</p>
+            </div>
+        </footer>
+
+    </div>
+
+</body>
+
+
